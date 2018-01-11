@@ -2,8 +2,6 @@ import request from 'axios'
 import config from './../../config.json'
 
 onmessage = function(e) {
-  console.log('Request Giphy API')
-
   request({
     method: 'get',
     url: 'http://' + config.giphy.host + config.giphy.endpoints.search,

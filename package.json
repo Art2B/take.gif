@@ -1,6 +1,6 @@
 {
   "name": "takeagif",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Take a break and have a gif",
   "main": "index.js",
   "scripts": {

@@ -16,15 +16,11 @@ if (self.Worker) {
 
   searchInput.addEventListener('keypress', {
     handleEvent: event => {
-      if (event.keyCode === 13) { 
-        console.log(`submitted input with value: ${searchInput.value}`)
-        grWorker.postMessage(searchInput.value)
-      }
+      if (event.keyCode === 13) grWorker.postMessage(searchInput.value)
     }
   })
   
   grWorker.onmessage = e => {
-    console.log(e.data)
     resultsHolder.innerHTML = formatGiphyData(e.data)
   }
 }
