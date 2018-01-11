@@ -4,6 +4,10 @@ import CleanWebpackPlugin from 'clean-webpack-plugin'
 
 export default {
   entry: './app/main.js',
+  output: {
+    path: path.resolve(__dirname, 'build'), 
+    filename: 'main.bundle.js'
+  },
   devtool: 'inline-source-map',
   devServer: {
     contentBase: './build'
@@ -15,8 +19,10 @@ export default {
       template: 'app/index.html'
     })
   ],
-  output: {
-    path: path.resolve(__dirname, 'build'), 
-    filename: 'main.bundle.js'
+  module: {
+    rules: [{
+      test: /\.worker\.js$/,
+      use: { loader: 'worker-loader' }
+    }]
   }
 }
