@@ -1,7 +1,10 @@
-console.log('Hello everybody')
+const searchInput = document.getElementById('search')
 
-const sayHello = name => {
-  console.log(`Hello ${name} !`)
-}
+searchInput.addEventListener('keypress', {
+  handleEvent: event => {
+    if (event.keyCode === 13) { 
+      console.log(`submitted input with value: ${searchInput.value}`)
+    }
+  }
+})
 
-sayHello('Arthur')
