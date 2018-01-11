@@ -1,0 +1,9 @@
+{
+  "giphy": {
+    "host": "api.giphy.com",
+    "apikey": "YOUR_API_KEY",
+    "endpoints": {
+      "search": "/v1/gifs/search"
+    }
+  }
+}
