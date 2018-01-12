@@ -1,53 +1,63 @@
 import Worker from './workers/gr.worker.js'
+import Gif from './components/gif.js'
 
 const searchInput = document.getElementById('search')
 const resultsHolder = document.getElementById('results')
-let favButtons = document.querySelector('.gif-holder button')
 
-const addToFav = e => {
-  let slug = e.target.dataset.gif
-  let favs
-  
-  try {
-    favs = JSON.parse(localStorage.getItem('favs'))
-  } catch(error) {
-    favs = new Array()
+const reloadBtnEvents = () => {
+  let favButtons = document.querySelectorAll('.gif-holder button')
+  if (favButtons) favButtons.forEach(btn => { btn.addEventListener('click', updateFromFav) })
+}
+
+// Favorites link
+const favLink = document.getElementById('fav-btn')
+favLink.addEventListener('click', {
+  handleEvent: event => {
+    let favs = JSON.parse(localStorage.getItem('favs'))
+    let fhtml = ''
+    favs.forEach(fav => fhtml = fhtml.concat(new Gif(fav).render()))
+    resultsHolder.innerHTML = fhtml
+    reloadBtnEvents()
   }
-  
-  favs.push(slug)
+})
+
+const updateFromFav = e => {
+  let favs = []
+  let targetUrl = e.target.parentElement.querySelector('img').src
+
+  try {
+    let lsFavs = JSON.parse(localStorage.getItem('favs'))
+    if (lsFavs) favs = lsFavs
+  } catch (error) {}
+
+  if (favs.find(e => e === targetUrl)) {
+    favs = favs.filter(fav => fav !== targetUrl)
+  } else {
+    favs.push(targetUrl)
+  }
+
   localStorage.setItem('favs', JSON.stringify(favs))
 }
 
 const formatGiphyData = gifArray => {
-  const getImgHtmlString = (gif) => {
-    return (`
-      <div class="gif-holder">
-        <button data-gif="${gif.slug}">Add to fav</button>
-        <img src="${gif.images.original.url}">    
-      </div>  
-    `)
-  }
-
   let imgString = ''
-    for (let gif of gifArray) {
-      // imgString = imgString.concat(`<img src="${gif.images.original.url}">`)
-      imgString = imgString.concat(getImgHtmlString(gif))
-    }
+  for (let gif of gifArray) {
+    imgString = imgString.concat(new Gif(gif.images.preview_gif.url).render())
+  }
   return imgString
 }
 
 if (self.Worker) {
   const grWorker = new Worker()
 
-    searchInput.addEventListener('keypress', {
-      handleEvent: event => {
-        if (event.keyCode === 13) grWorker.postMessage(searchInput.value)
-      }
-    })
+  searchInput.addEventListener('keypress', {
+    handleEvent: event => {
+      if (event.keyCode === 13) grWorker.postMessage({ q: searchInput.value })
+    }
+  })
 
   grWorker.onmessage = e => {
     resultsHolder.innerHTML = formatGiphyData(e.data)
-    favButtons = document.querySelector('.gif-holder button')
-    favButtons.addEventListener('click', addToFav)
+    reloadBtnEvents()
   }
 }
