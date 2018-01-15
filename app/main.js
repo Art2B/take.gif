@@ -1,6 +1,10 @@
 import Worker from './workers/gr.worker.js'
 import Gif from './components/gif.js'
 
+// Import style. Note: I hate that way of loading SCSS files
+import style from './styles/index.scss'
+
+const searchForm = document.getElementById('search-form')
 const searchInput = document.getElementById('search')
 const resultsHolder = document.getElementById('results')
 
@@ -10,16 +14,16 @@ const reloadBtnEvents = () => {
 }
 
 // Favorites link
-const favLink = document.getElementById('fav-btn')
-favLink.addEventListener('click', {
-  handleEvent: event => {
-    let favs = JSON.parse(localStorage.getItem('favs'))
-    let fhtml = ''
-    favs.forEach(fav => fhtml = fhtml.concat(new Gif(fav).render()))
-    resultsHolder.innerHTML = fhtml
-    reloadBtnEvents()
-  }
-})
+// const favLink = document.getElementById('fav-btn')
+// favLink.addEventListener('click', {
+//   handleEvent: event => {
+//     let favs = JSON.parse(localStorage.getItem('favs'))
+//     let fhtml = ''
+//     favs.forEach(fav => fhtml = fhtml.concat(new Gif(fav).render()))
+//     resultsHolder.innerHTML = fhtml
+//     reloadBtnEvents()
+//   }
+// })
 
 const updateFromFav = e => {
   let favs = []
@@ -50,9 +54,11 @@ const formatGiphyData = gifArray => {
 if (self.Worker) {
   const grWorker = new Worker()
 
-  searchInput.addEventListener('keypress', {
+  searchForm.addEventListener('submit', {
     handleEvent: event => {
-      if (event.keyCode === 13) grWorker.postMessage({ q: searchInput.value })
+      console.log('Salut !')
+      event.preventDefault()
+      grWorker.postMessage({ q: searchInput.value })
     }
   })
 
