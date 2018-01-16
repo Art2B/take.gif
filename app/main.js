@@ -42,31 +42,36 @@ const formatGiphyData = gifArray => {
   return imgString
 }
 
-route('/', () => {
-  document.title = 'TAKE.GIF'
-  resultsHolder.innerHTML = ''
-})
-route('/fav', () => {
-  document.title = 'Fav - TAKE.GIF'
-  try {
-    let favs = JSON.parse(localStorage.getItem('favs'))
-    let imgString = ''
-    favs.forEach(gifUrl => {
-      imgString = imgString.concat(new Gif(gifUrl).render())
-    })
-    resultsHolder.innerHTML = imgString
-  } catch (error) {
-    resultsHolder.innerHTML = '<p>You have no favorite gifs. Add some !</p>'
-  }
-})
-route.start(true)
-
 if (self.Worker) {
   const grWorker = new Worker()
+
+  route('/', () => {
+    document.title = 'TAKE.GIF'
+    resultsHolder.innerHTML = ''
+  })
+  route('/?q=*', query => {
+    grWorker.postMessage({ q: query })
+  })
+  route('/fav', () => {
+    document.title = 'Fav - TAKE.GIF'
+    try {
+      let favs = JSON.parse(localStorage.getItem('favs'))
+      let imgString = ''
+      favs.forEach(gifUrl => {
+        imgString = imgString.concat(new Gif(gifUrl).render())
+      })
+      resultsHolder.innerHTML = imgString
+      reloadBtnEvents()
+    } catch (error) {
+      resultsHolder.innerHTML = '<p>You have no favorite gifs. Add some !</p>'
+    }
+  })
+  route.start(true)
 
   searchForm.addEventListener('submit', {
     handleEvent: event => {
       event.preventDefault()
+      route('?q=' + searchInput.value)
       grWorker.postMessage({ q: searchInput.value })
     }
   })
