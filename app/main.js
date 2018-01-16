@@ -9,8 +9,7 @@ const searchInput = document.getElementById('search')
 const resultsHolder = document.getElementById('results')
 
 const reloadBtnEvents = () => {
-  let favButtons = document.querySelectorAll('.gif-holder button')
-  if (favButtons) favButtons.forEach(btn => { btn.addEventListener('click', updateFromFav) })
+  document.querySelectorAll('.gif-holder').forEach(gif => { gif.querySelector('.icon-holder').addEventListener('click', e => updateFromFav(gif)) })
 }
 
 // Favorites link
@@ -25,9 +24,9 @@ const reloadBtnEvents = () => {
 //   }
 // })
 
-const updateFromFav = e => {
+const updateFromFav = target => {
   let favs = []
-  let targetUrl = e.target.parentElement.querySelector('img').src
+  let targetUrl = target.querySelector('img').src
 
   try {
     let lsFavs = JSON.parse(localStorage.getItem('favs'))
@@ -35,8 +34,10 @@ const updateFromFav = e => {
   } catch (error) {}
 
   if (favs.find(e => e === targetUrl)) {
+    target.querySelector('.fa-star').dataset.prefix = 'fas'
     favs = favs.filter(fav => fav !== targetUrl)
   } else {
+    target.querySelector('.fa-star').dataset.prefix = 'far'
     favs.push(targetUrl)
   }
 
@@ -56,7 +57,6 @@ if (self.Worker) {
 
   searchForm.addEventListener('submit', {
     handleEvent: event => {
-      console.log('Salut !')
       event.preventDefault()
       grWorker.postMessage({ q: searchInput.value })
     }
