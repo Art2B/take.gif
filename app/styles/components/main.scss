@@ -15,4 +15,25 @@ main {
       color: black;
     }
   }
+  #results {
+  }
+
+  #results {
+    column-width: auto;
+    column-gap: 0px;
+    column-count: 3;
+    width: 50%;
+    margin: 5px auto;
+    max-width: 1100px;
+    border: 5px solid black;
+    box-sizing: border-box;
+    .gif-holder {
+      display: inline-block;
+      width: 100%;
+      column-break-inside: avoid;
+      img {
+        width: 100%;
+      }
+    }
+  }
 }
