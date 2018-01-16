@@ -1,4 +1,7 @@
 {
+  "wording": {
+    "title": "TAKE.GIF"
+  },
   "giphy": {
     "host": "api.giphy.com",
     "apikey": "YOUR_API_KEY",

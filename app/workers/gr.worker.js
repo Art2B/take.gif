@@ -1,5 +1,5 @@
 import request from 'axios'
-import config from './../../config.json'
+import config from './../config.json'
 
 onmessage = function (e) {
   request({

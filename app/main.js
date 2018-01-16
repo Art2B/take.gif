@@ -1,6 +1,7 @@
 import route from 'riot-route'
 import { TweenMax, Power2 } from 'gsap'
 
+import config from './config.json'
 import Worker from './workers/gr.worker.js'
 import Gif from './components/gif.js'
 
@@ -51,7 +52,7 @@ const formatGiphyData = gifArray => {
   return imgString
 }
 
-const resetHtml = (title = 'TAKE.GIF') => {
+const resetHtml = (title = config.wording.title) => {
   document.title = title
   resultsHolder.classList.remove('single')
   resultsHolder.innerHTML = ''
@@ -66,7 +67,7 @@ if (self.Worker) {
     grWorker.postMessage({ q: query })
   })
   route('/fav', () => {
-    resetHtml('Fav - TAKE.GIF')
+    resetHtml('Fav - ' + config.wording.title)
 
     try {
       let favs = JSON.parse(localStorage.getItem('favs'))
@@ -78,7 +79,7 @@ if (self.Worker) {
       resultsHolder.innerHTML = imgString
       reloadBtnEvents()
     } catch (error) {
-      resultsHolder.innerHTML = '<p>You have no favorite gifs. Add some !</p>'
+      resultsHolder.innerHTML = `<p>${config.wording.nofav}</p>`
       resultsHolder.classList.add('single')
     }
   })
