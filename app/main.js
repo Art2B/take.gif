@@ -51,20 +51,26 @@ const formatGiphyData = gifArray => {
   return imgString
 }
 
+const resetHtml = (title = 'TAKE.GIF') => {
+  document.title = title
+  resultsHolder.classList.remove('single')
+  resultsHolder.innerHTML = ''
+}
+
 if (self.Worker) {
   const grWorker = new Worker()
 
-  route('/', () => {
-    document.title = 'TAKE.GIF'
-    resultsHolder.innerHTML = ''
-  })
+  route('/', resetHtml)
   route('/?q=*', query => {
+    resetHtml()
     grWorker.postMessage({ q: query })
   })
   route('/fav', () => {
-    document.title = 'Fav - TAKE.GIF'
+    resetHtml('Fav - TAKE.GIF')
+
     try {
       let favs = JSON.parse(localStorage.getItem('favs'))
+      if (favs.length <= 0) throw 'favsEmpty'
       let imgString = ''
       favs.forEach(gifUrl => {
         imgString = imgString.concat(new Gif(gifUrl).render())
@@ -73,6 +79,7 @@ if (self.Worker) {
       reloadBtnEvents()
     } catch (error) {
       resultsHolder.innerHTML = '<p>You have no favorite gifs. Add some !</p>'
+      resultsHolder.classList.add('single')
     }
   })
   route.start(true)
