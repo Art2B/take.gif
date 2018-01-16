@@ -23,6 +23,8 @@
     "worker-loader": "^1.1.0"
   },
   "dependencies": {
-    "axios": "^0.17.1"
+    "axios": "^0.17.1",
+    "gsap": "^1.20.3",
+    "riot-route": "^3.1.2"
   }
 }

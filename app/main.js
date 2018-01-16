@@ -1,3 +1,5 @@
+import route from 'riot-route'
+
 import Worker from './workers/gr.worker.js'
 import Gif from './components/gif.js'
 
@@ -39,6 +41,24 @@ const formatGiphyData = gifArray => {
   }
   return imgString
 }
+
+route('/', () => {
+  console.log('Must render home')
+  resultsHolder.innerHTML = ''
+})
+route('/fav', () => {
+  try {
+    let favs = JSON.parse(localStorage.getItem('favs'))
+    let imgString = ''
+    favs.forEach(gifUrl => {
+      imgString = imgString.concat(new Gif(gifUrl).render())
+    })
+    resultsHolder.innerHTML = imgString
+  } catch (error) {
+    resultsHolder.innerHTML = '<p>You have no favorite gifs. Add some !</p>'
+  }
+})
+route.start(true)
 
 if (self.Worker) {
   const grWorker = new Worker()
