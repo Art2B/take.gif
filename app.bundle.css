@@ -1,0 +1,202 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after {
+  content: '';
+  content: none; }
+
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+body {
+  background: indianred;
+  font-family: sans-serif;
+  color: black;
+  width: 100vw;
+  min-height: 100vh;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding-bottom: 30px;
+  box-sizing: border-box; }
+
+header {
+  position: relative;
+  width: 50%;
+  border: 5px solid black;
+  margin: 40px auto 0;
+  padding: 10px;
+  box-sizing: border-box;
+  text-align: center; }
+  header h1 {
+    font-size: 32px; }
+  @media (max-width: 1024px) {
+    header {
+      width: 80%; } }
+  header .home-link {
+    height: 100%;
+    width: 100%;
+    color: black;
+    text-decoration: none; }
+    header .home-link:visited, header .home-link:active {
+      color: black;
+      text-decoration: none; }
+  header .fav-link {
+    display: block;
+    height: 100%;
+    width: 10%;
+    background: black;
+    color: indianred;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    font-size: 36px;
+    line-height: 100%; }
+    header .fav-link svg {
+      position: absolute;
+      margin: auto;
+      left: 0;
+      right: 0;
+      top: 50%;
+      bottom: 50%; }
+
+main {
+  text-align: center; }
+  main #search {
+    width: 50%;
+    background: transparent;
+    border: 5px solid black;
+    margin: 5px auto 0;
+    padding: 10px;
+    text-align: center;
+    font-size: 24px; }
+    main #search:focus {
+      outline: none; }
+    main #search::-webkit-input-placeholder {
+      color: black; }
+    main #search::-moz-placeholder {
+      color: black; }
+    main #search:-ms-input-placeholder {
+      color: black; }
+    main #search:-moz-placeholder {
+      color: black; }
+    @media (max-width: 1024px) {
+      main #search {
+        width: 80%; } }
+  main #results {
+    column-width: auto;
+    column-gap: 0px;
+    column-count: 3;
+    width: 50%;
+    margin: 5px auto;
+    max-width: 1100px;
+    border: 5px solid black;
+    box-sizing: border-box;
+    height: 'auto'; }
+    main #results.single {
+      column-count: 1; }
+    @media (max-width: 1024px) {
+      main #results {
+        width: 80%; } }
+    main #results .gif-holder {
+      display: inline-block;
+      width: 100%;
+      column-break-inside: avoid; }
+      main #results .gif-holder img {
+        width: 100%; }
+    main #results p {
+      padding: 10px 0px; }
+      #results main #results p {
+        column-count: 1; }
+
+.gif-holder {
+  position: relative;
+  display: inline-block;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */ }
+  .gif-holder:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    background: transparent;
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */ }
+  .gif-holder:hover:before {
+    background: rgba(0, 0, 0, 0.5); }
+  .gif-holder:hover .icon-holder .svg-inline--fa {
+    opacity: 1; }
+  .gif-holder img {
+    vertical-align: middle; }
+  .gif-holder .icon-holder {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 15; }
+    .gif-holder .icon-holder .svg-inline--fa {
+      color: gold;
+      opacity: 0;
+      cursor: pointer;
+      font-size: 40px;
+      position: absolute;
+      margin: auto;
+      left: 0;
+      right: 0;
+      top: 50%;
+      bottom: 50%; }
+
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAuYnVuZGxlLmNzcyIsInNvdXJjZVJvb3QiOiIifQ==*/
