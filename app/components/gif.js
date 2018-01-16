@@ -12,11 +12,11 @@ export default class Gif {
   }
 
   render () {
-    let btnText = (this.checkFav()) ? 'Remove from fav' : 'Add to fav'
-
     return (`
       <div class="gif-holder">
-        <button>${btnText}</button>
+        <div class="icon-holder">
+          <i class="${this.checkFav() ? 'fas' : 'far'} fa-star"></i>
+        </div>
         <img src="${this.url}">    
       </div>
     `)

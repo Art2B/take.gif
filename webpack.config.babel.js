@@ -19,7 +19,7 @@ export default {
       title: 'TAKE.GIF',
       template: 'app/index.html'
     }),
-    new ExtractTextPlugin({ filename: 'app.bundle.css'})
+    new ExtractTextPlugin({filename: 'app.bundle.css'})
   ],
   module: {
     rules: [{

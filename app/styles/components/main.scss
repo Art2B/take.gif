@@ -1,0 +1,18 @@
+main {
+  text-align: center;
+
+  #search {
+    width: 50%;
+    background: transparent;
+    border: 5px solid black;
+    margin: 5px auto 0;
+    padding: 10px;
+
+    text-align: center;
+    font-size: 24px;
+    @include clean-input;
+    @include placeholder {
+      color: black;
+    }
+  }
+}

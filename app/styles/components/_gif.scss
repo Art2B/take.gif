@@ -1,0 +1,44 @@
+.gif-holder {
+  position: relative;
+  display: inline-block;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 0; right: 0;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0);
+  }
+  &:hover {
+    &:before {
+      background: rgba(0, 0, 0, 0.5);
+    }
+    .icon-holder {
+      .svg-inline--fa {
+        opacity: 1;
+      }
+    }
+  }
+  img {
+    vertical-align: middle;
+  }
+  .icon-holder {
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 0; right: 0;
+    z-index: 15;
+    .svg-inline--fa {
+      color: gold;
+      opacity: 0;
+      cursor: pointer;
+
+      font-size: 40px;
+      
+      position: absolute;
+      margin: auto;
+      left: 0; right: 0;
+      top:50%;
+      bottom:50%;
+    }
+  }
+}
