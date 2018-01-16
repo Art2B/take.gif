@@ -1,4 +1,5 @@
 import route from 'riot-route'
+import { TweenMax, Power2 } from 'gsap'
 
 import Worker from './workers/gr.worker.js'
 import Gif from './components/gif.js'
@@ -14,6 +15,10 @@ const reloadBtnEvents = () => {
   document.querySelectorAll('.gif-holder').forEach(gif => { gif.querySelector('.icon-holder').addEventListener('click', e => updateFromFav(gif)) })
 }
 
+const favStarAnim = (target, cb) => {
+  TweenMax.to(target, 0.1, { scale: 1.2, transformOrigin: 'center', yoyo: true, repeat: 1, ease: Power2.easeInOut, onComplete: cb })
+}
+
 const updateFromFav = target => {
   let favs = []
   let targetUrl = target.querySelector('img').src
@@ -24,10 +29,14 @@ const updateFromFav = target => {
   } catch (error) {}
 
   if (favs.find(e => e === targetUrl)) {
-    target.querySelector('.fa-star').dataset.prefix = 'far'
+    favStarAnim(target.querySelector('.fa-star'), () => {
+      target.querySelector('.fa-star').dataset.prefix = 'far'
+    })
     favs = favs.filter(fav => fav !== targetUrl)
   } else {
-    target.querySelector('.fa-star').dataset.prefix = 'fas'
+    favStarAnim(target.querySelector('.fa-star'), () => {
+      target.querySelector('.fa-star').dataset.prefix = 'fas'
+    })
     favs.push(targetUrl)
   }
 
