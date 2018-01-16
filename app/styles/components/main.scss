@@ -14,6 +14,9 @@ main {
     @include placeholder {
       color: black;
     }
+    @include tablet {
+      width: 80%;
+    }
   }
   #results {
   }
@@ -27,6 +30,9 @@ main {
     max-width: 1100px;
     border: 5px solid black;
     box-sizing: border-box;
+    @include tablet {
+      width: 80%;
+    }
     .gif-holder {
       display: inline-block;
       width: 100%;
