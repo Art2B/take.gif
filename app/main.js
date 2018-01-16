@@ -43,10 +43,11 @@ const formatGiphyData = gifArray => {
 }
 
 route('/', () => {
-  console.log('Must render home')
+  document.title = 'TAKE.GIF'
   resultsHolder.innerHTML = ''
 })
 route('/fav', () => {
+  document.title = 'Fav - TAKE.GIF'
   try {
     let favs = JSON.parse(localStorage.getItem('favs'))
     let imgString = ''
