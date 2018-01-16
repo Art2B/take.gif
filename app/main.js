@@ -12,18 +12,6 @@ const reloadBtnEvents = () => {
   document.querySelectorAll('.gif-holder').forEach(gif => { gif.querySelector('.icon-holder').addEventListener('click', e => updateFromFav(gif)) })
 }
 
-// Favorites link
-// const favLink = document.getElementById('fav-btn')
-// favLink.addEventListener('click', {
-//   handleEvent: event => {
-//     let favs = JSON.parse(localStorage.getItem('favs'))
-//     let fhtml = ''
-//     favs.forEach(fav => fhtml = fhtml.concat(new Gif(fav).render()))
-//     resultsHolder.innerHTML = fhtml
-//     reloadBtnEvents()
-//   }
-// })
-
 const updateFromFav = target => {
   let favs = []
   let targetUrl = target.querySelector('img').src
@@ -34,10 +22,10 @@ const updateFromFav = target => {
   } catch (error) {}
 
   if (favs.find(e => e === targetUrl)) {
-    target.querySelector('.fa-star').dataset.prefix = 'fas'
+    target.querySelector('.fa-star').dataset.prefix = 'far'
     favs = favs.filter(fav => fav !== targetUrl)
   } else {
-    target.querySelector('.fa-star').dataset.prefix = 'far'
+    target.querySelector('.fa-star').dataset.prefix = 'fas'
     favs.push(targetUrl)
   }
 
