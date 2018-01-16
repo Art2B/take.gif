@@ -4,7 +4,7 @@ import config from './../config.json'
 onmessage = function (e) {
   request({
     method: 'get',
-    url: 'http://' + config.giphy.host + config.giphy.endpoints.search,
+    url: 'https://' + config.giphy.host + config.giphy.endpoints.search,
     params: Object.assign({
       api_key: config.giphy.apikey,
       limit: 20

@@ -1,6 +1,7 @@
 {
   "wording": {
-    "title": "TAKE.GIF"
+    "title": "TAKE.GIF",
+    "nofav": "You don't have any favorites. Add some !"
   },
   "giphy": {
     "host": "api.giphy.com",
