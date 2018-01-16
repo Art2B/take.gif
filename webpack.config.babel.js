@@ -2,6 +2,7 @@ import path from 'path'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import CleanWebpackPlugin from 'clean-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import FaviconsWebpackPlugin from 'favicons-webpack-plugin'
 
 export default {
   entry: './app/main.js',
@@ -19,7 +20,8 @@ export default {
       title: 'TAKE.GIF',
       template: 'app/index.html'
     }),
-    new ExtractTextPlugin({filename: 'app.bundle.css'})
+    new ExtractTextPlugin({filename: 'app.bundle.css'}),
+    new FaviconsWebpackPlugin('./app/assets/favicon.png')
   ],
   module: {
     rules: [{
