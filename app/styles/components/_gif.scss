@@ -1,6 +1,7 @@
 .gif-holder {
   position: relative;
   display: inline-block;
+  @include no-select;
   &:before {
     content: '';
     position: absolute;
@@ -8,6 +9,7 @@
     left: 0; right: 0;
     z-index: 10;
     background: rgba(0, 0, 0, 0);
+    @include no-select;
   }
   &:hover {
     &:before {
