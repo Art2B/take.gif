@@ -8,14 +8,15 @@ const APP_DIR = path.resolve(__dirname, 'app')
 const BUILD_DIR = path.resolve(__dirname, 'build')
 
 export default {
-  entry: './app/main.js',
+  entry: './app/scripts/index.js',
   output: {
     path: BUILD_DIR,
-    filename: 'main.bundle.js'
+    filename: 'app.bundle.js'
   },
   devtool: 'inline-source-map',
   devServer: {
-    contentBase: './build'
+    contentBase: './build',
+    historyApiFallback: true
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),
@@ -40,6 +41,9 @@ export default {
       test: /\.jsx?/,
       include: APP_DIR,
       loader: 'babel-loader'
+    }, {
+      test: /\.json$/,
+      loader: 'json-loader'
     }]
   }
 }
