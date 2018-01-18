@@ -187,6 +187,10 @@ main {
     left: 0;
     right: 0;
     z-index: 15; }
+    .gif-holder .icon-holder .copy-icon svg {
+      left: 20%; }
+    .gif-holder .icon-holder .fav-icon svg {
+      right: 20%; }
     .gif-holder .icon-holder .svg-inline--fa {
       color: gold;
       opacity: 0;
@@ -194,8 +198,6 @@ main {
       font-size: 40px;
       position: absolute;
       margin: auto;
-      left: 0;
-      right: 0;
       top: 50%;
       bottom: 50%; }
 
