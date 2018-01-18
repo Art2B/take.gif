@@ -4,8 +4,8 @@
   "description": "Take a break and have a gif",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --open",
-    "build": "webpack",
+    "start": "webpack-dev-server --open --env.dev",
+    "build": "webpack --env.production",
     "deploy": "gh-pages -d build"
   },
   "author": "Art2B <@mr_marabout>",
@@ -25,9 +25,9 @@
     "node-sass": "^4.7.2",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.19.1",
+    "uglifyjs-webpack-plugin": "^1.1.6",
     "webpack": "^3.10.0",
-    "webpack-dev-server": "^2.10.1",
-    "worker-loader": "^1.1.0"
+    "webpack-dev-server": "^2.10.1"
   },
   "dependencies": {
     "axios": "^0.17.1",

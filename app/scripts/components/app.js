@@ -9,7 +9,7 @@ import Home from './../containers/home.js'
 export default class App extends React.Component {
   render () {
     return (
-      <Router>
+      <Router basename='/take.gif/'>
         <div>
           <Header />
           <main id='main'>
