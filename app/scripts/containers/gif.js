@@ -11,10 +11,23 @@ const mapStateToProps = (state, props) => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    toggleFav: (target, isFav, url) => {
+    toggleFav: (t, isFav, url) => {
+      const findAncestor = (el, cls) => {
+        while ((el = el.parentElement) && !el.classList.contains(cls));
+        return el
+      }
+
+      let target
+
+      if (!t.classList.contains('fa-star')) {
+        target = findAncestor(t, 'fa-star')
+      } else {
+        target = t
+      }
+
       const cb = isFav ? () => { target.dataset.prefix = 'far' } : () => { target.dataset.prefix = 'fas' }
       const action = isFav ? removeFav(url) : addFav(url)
-      TweenMax.to(target, 0.1, {scale: 1.2, transformOrigin: 'center', yoyo: true, repeat: 1, ease: Power2.easeInOut, onComplete: cb})
+      TweenMax.to(target, 0.1, { scale: 1.2, transformOrigin: 'center', yoyo: true, repeat: 1, ease: Power2.easeInOut, onComplete: cb })
       dispatch(action)
     }
   }

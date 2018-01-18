@@ -1,10 +1,10 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import Gif from './../containers/gif.js'
 
-export default class Home extends React.Component {
+class Home extends React.Component {
   componentWillUnmount () {
-    console.log('Remove everything')
     this.props.clearResults()
   }
 
@@ -18,3 +18,9 @@ export default class Home extends React.Component {
     )
   }
 }
+
+Home.propTypes = {
+  gifs: PropTypes.array
+}
+
+export default Home
