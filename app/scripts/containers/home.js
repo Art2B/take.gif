@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 
+import { clearResults } from './../actions/results'
 import HomeDisplay from './../components/home.jsx'
 
 const mapStateToProps = (state) => ({
@@ -8,8 +9,9 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    addFav: (url) => {
-      dispatch({type: 'ASYNC_FAV', url: url})
+    clearResults: () => {
+      dispatch(clearResults())
+      document.querySelector('#search').value = ''
     }
   }
 }

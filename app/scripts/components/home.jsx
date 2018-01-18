@@ -1,19 +1,20 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 import Gif from './../containers/gif.js'
 
-const Home = ({ gifs, addFav }) => (
-  <div id='results'>
-    { gifs.map(gif => (
-      <Gif key={gif.id} url={gif.images.downsized.url} />
-    ))}
-  </div>
-)
+export default class Home extends React.Component {
+  componentWillUnmount () {
+    console.log('Remove everything')
+    this.props.clearResults()
+  }
 
-Home.propTypes = {
-  gifs: PropTypes.array,
-  addFav: PropTypes.func
+  render () {
+    return (
+      <div id='results'>
+        { this.props.gifs.map(gif => (
+          <Gif key={gif.id} url={gif.images.downsized.url} />
+        ))}
+      </div>
+    )
+  }
 }
-
-export default Home
