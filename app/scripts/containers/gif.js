@@ -8,15 +8,14 @@ const mapStateToProps = (state, props) => ({
   url: props.url,
   isFav: !!state.favorites.find(el => el === props.url)
 })
+const findAncestor = (el, cls) => {
+  while ((el = el.parentElement) && !el.classList.contains(cls));
+  return el
+}
 
 const mapDispatchToProps = dispatch => {
   return {
     toggleFav: (t, isFav, url) => {
-      const findAncestor = (el, cls) => {
-        while ((el = el.parentElement) && !el.classList.contains(cls));
-        return el
-      }
-
       let target
 
       if (!t.classList.contains('fa-star')) {
@@ -29,6 +28,16 @@ const mapDispatchToProps = dispatch => {
       const action = isFav ? removeFav(url) : addFav(url)
       TweenMax.to(target, 0.1, { scale: 1.2, transformOrigin: 'center', yoyo: true, repeat: 1, ease: Power2.easeInOut, onComplete: cb })
       dispatch(action)
+    },
+    animCopy: e => {
+      let target
+
+      if (!e.target.classList.contains('fa-link')) {
+        target = findAncestor(e.target, 'fa-link')
+      } else {
+        target = e.target
+      }
+      TweenMax.to(target, 0.1, { scale: 1.2, transformOrigin: 'center', yoyo: true, repeat: 1, ease: Power2.easeInOut })
     }
   }
 }

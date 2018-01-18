@@ -29,6 +29,16 @@
     top: 0; bottom: 0;
     left: 0; right: 0;
     z-index: 15;
+    .copy-icon {
+      svg {
+        left: 20%;
+      }
+    }
+    .fav-icon {
+      svg {
+        right: 20%;
+      }
+    }
     .svg-inline--fa {
       color: gold;
       opacity: 0;
@@ -38,7 +48,6 @@
       
       position: absolute;
       margin: auto;
-      left: 0; right: 0;
       top:50%;
       bottom:50%;
     }
